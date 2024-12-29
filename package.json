@@ -1,0 +1,31 @@
+{
+  "name": "next-loading-cli",
+  "license": "MIT",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "next-loading-cli": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "release": "pnpm run build && changeset publish",
+    "lint": "tsc"
+  },
+  "devDependencies": {
+    "@babel/types": "^7.26.3",
+    "@changesets/cli": "^2.26.0",
+    "@types/babel__traverse": "^7.20.6",
+    "@types/node": "^22.10.2",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.26.3",
+    "@babel/traverse": "^7.26.4",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.7",
+    "openai": "^4.77.0"
+  }
+}
