@@ -68,7 +68,7 @@ export async function generateLoadingFile(fullPath: string) {
 
   const prefix = startComment+
 `// This file will stay up-to-date when you make changes to your \`page.tsx\` file
-// and run \`next-loading-cli\` again.
+// and run \`generate-next-loading\` again.
 // You can edit this file. To prevent future overwrites, delete the comment line.
 `
 

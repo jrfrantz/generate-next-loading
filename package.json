@@ -1,12 +1,12 @@
 {
-  "name": "next-loading-cli",
+  "name": "generate-next-loading",
   "license": "MIT",
   "version": "0.0.1",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "bin": {
-    "next-loading-cli": "dist/index.js"
+    "generate-next-loading": "dist/index.js"
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
