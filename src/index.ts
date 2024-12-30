@@ -4,12 +4,12 @@ import path = require("path");
 import fs = require("fs");
 import { generateLoadingFile } from "./generateLoadingFile";
 import { keyInYN } from "readline-sync"
-import { startComment } from "./consts";
+import { startComment, VERSION } from "./consts";
 const dotenv = require("dotenv")
 const program = new typings.Command();
 
 program
-  .version("0.0.1")
+  .version(VERSION)
   .description("Automatically generate a loading screen for a page file")
   .option('-e, --env <path>', 'Path to .env file', '.env')
   .option('-f, --force', 'Force overwrite, even if loading file has been modified', false)
