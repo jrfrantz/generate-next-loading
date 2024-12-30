@@ -13,9 +13,21 @@ Loading screens appear instantly to make your site feel faster, give the users t
 
 ## How to use
 ```bash
-npm install --save-dev generate-next-loading
-generate-next-loading path/to/page.tsx
+npx generate-next-loading@latest path/to/page.tsx
 # ... generated path/to/loading.tsx
+```
+or add it to your project:
+```bash
+npm i --save-dev generate-next-loading
+```
+In package.json:
+```json
+{
+  "scripts": {
+    ...
+    "loading": "generate-next-loading"
+  },
+}
 ```
 That's it! You need an env variable for `OPENAI_API_KEY`. By defualt, looks in `.env` in your project.
 
