@@ -7,7 +7,6 @@ import { startComment } from "./consts";
 
 
 export async function generateLoadingFile(fullPath: string) {
-  console.log({fullPath})
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   })
@@ -35,7 +34,7 @@ export async function generateLoadingFile(fullPath: string) {
     },
     ImportDeclaration(path) {
       const source = path.node.source.value;
-      console.log({ source })
+      //console.log({ source })
       // check if the import is a local import
       // of a react component
       localImports.push(source);

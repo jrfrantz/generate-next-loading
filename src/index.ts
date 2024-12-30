@@ -56,7 +56,7 @@ program
       } else {
         // File has been modified by user - require force flag or user confirmation
         if (!options.force && 
-            !keyInYN(`File ${loadingPath} has been modified by user. Overwrite?`)) {
+            !keyInYN(`File ${loadingPath} has been modified by user. Overwrite?`, { defaultInput: 'Y'})) {
           console.log('Operation cancelled')
           process.exit(0)
         }
