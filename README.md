@@ -21,11 +21,12 @@ or add it to your project:
 npm i --save-dev generate-next-loading
 ```
 In package.json:
-```json
+```js
+//package.json
 {
   "scripts": {
-    ...
-    "loading": "generate-next-loading"
+    // your other scripts
+    "generate-loading": "generate-next-loading"
   },
 }
 ```
