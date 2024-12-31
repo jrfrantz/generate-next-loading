@@ -7,6 +7,7 @@ import { startComment } from "./consts";
 
 
 export async function generateLoadingFile(fullPath: string) {
+  const relativePath = path.relative(process.cwd(), fullPath)
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   })
@@ -28,7 +29,7 @@ export async function generateLoadingFile(fullPath: string) {
       if (declaration.type === "FunctionDeclaration") {
         const isAsync = declaration.async;
         if (isAsync) {
-          console.log("default export is async function %s", declaration.id?.name);
+          console.log(`${relativePath}: default export is async function ${declaration.id?.name}`);
         }
       }
     },
@@ -44,7 +45,7 @@ export async function generateLoadingFile(fullPath: string) {
 
   // ask the AI to generate a loading screen based on 
   // the file content
-  console.log(`Creating loading screen for ${fullPath}`)
+  console.log(`${relativePath}: Creating loading screen`)
   const response = await openai.chat.completions.create({
     model: 'chatgpt-4o-latest',
     messages: [
@@ -57,7 +58,7 @@ export async function generateLoadingFile(fullPath: string) {
         content: `${fileContent}`},
     ],
   })
-  console.log(`Generated loading screen for ${fullPath}`)
+  console.log(`${relativePath}: Generated loading screen`)
 
 
   const fileOutputAi = response.choices[0]?.message.content ?? ""
@@ -76,5 +77,5 @@ export async function generateLoadingFile(fullPath: string) {
   const loadingFileLocation = path.join(path.dirname(fullPath), "loading"+path.extname(fullPath))
   
   fs.writeFileSync(loadingFileLocation, prefix + fileOutput)
-  console.log(`Wrote loading screen to ${loadingFileLocation}`)
+  console.log(`${relativePath}: Wrote loading screen to ${loadingFileLocation}`)
 }
