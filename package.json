@@ -8,6 +8,16 @@
   "publishConfig": {
     "access": "public"
   },
+  "author": {
+    "name": "Jacob Frantz",
+    "url": "https://jacobfrantz.com"
+  },
+  "keywords": ["next", "loading", "codegen", "cli"],
+  "homepage": "https://github.com/jrfrantz/generate-next-loading#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jrfrantz/generate-next-loading.git"
+  },
   "bin": {
     "generate-next-loading": "dist/index.js"
   },
