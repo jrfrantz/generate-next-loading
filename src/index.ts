@@ -16,7 +16,6 @@ program
   .option('-f, --force', 'Force overwrite, even if loading file has been modified', false)
   .argument('[file]', 'Path to page.(js|ts|jsx|tsx) file. If not provided, all page files in the current directory will be processed.')
   .action((file, options) => {
-    console.log("New version");
     // Add check for file argument
     const files = []
     if (!file) {

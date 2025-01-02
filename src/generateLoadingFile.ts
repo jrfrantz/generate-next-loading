@@ -41,7 +41,7 @@ export async function generateLoadingFile(fullPath: string) {
   })
   cssFiles.push(...foundCssFiles)
   const cssFileContents = cssFiles.map(cssFile => fs.readFileSync(cssFile, 'utf8'))
-  console.log({ cssFileContents })
+  // console.log({ cssFileContents })
   const tailwindPattern = 'tailwind.config.{js,ts}'
   const tailwindFile = glob.sync(tailwindPattern, { 
     cwd: process.cwd(),
@@ -53,7 +53,7 @@ export async function generateLoadingFile(fullPath: string) {
     ]
   })
   const tailwindFileContents = tailwindFile[0] ? fs.readFileSync(tailwindFile[0], 'utf8') : ""
-  console.log({ tailwindFileContents })
+  // console.log({ tailwindFileContents })
   // parse file into an AST so you can check for local imports
   const ast = parse(fileContent, {
     sourceType: "module",
@@ -66,9 +66,6 @@ export async function generateLoadingFile(fullPath: string) {
       const declaration = path.node.declaration;
       if (declaration.type === "FunctionDeclaration") {
         const isAsync = declaration.async;
-        if (isAsync) {
-          console.log(`${relativePath}: default export is async function ${declaration.id?.name}`);
-        }
       }
     },
     ImportDeclaration(path) {
@@ -112,7 +109,6 @@ export async function generateLoadingFile(fullPath: string) {
         `},
     ],
   })
-  console.log(`${relativePath}: Generated loading screen`)
 
 
   const fileOutputAi = response.choices[0]?.message.content ?? ""
@@ -129,7 +125,8 @@ export async function generateLoadingFile(fullPath: string) {
   // write it to the corresponding loading.tsx in the same directory as page.tsx
   // use the same file suffix as the page.(tsx | jsx | ts | js)
   const loadingFileLocation = path.join(path.dirname(fullPath), "loading"+path.extname(fullPath))
+  const relativeLoadingLocation = path.relative(process.cwd(), loadingFileLocation)
   
   fs.writeFileSync(loadingFileLocation, prefix + fileOutput)
-  console.log(`${relativePath}: Wrote loading screen to ${loadingFileLocation}`)
+  console.log(`${relativePath}: Wrote loading screen to ${relativeLoadingLocation}`)
 }
