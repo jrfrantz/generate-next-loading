@@ -5,6 +5,7 @@ import fs = require("fs");
 import path from "path";
 import { startComment } from "./consts";
 import { glob } from "glob";
+import { prompt } from "./prompt";
 
 
 export async function generateLoadingFile(fullPath: string) {
@@ -78,6 +79,8 @@ export async function generateLoadingFile(fullPath: string) {
   });
 
 
+  // read prompt.txt into a string variable at build time, noting that 
+  // this will be run in OTHER PEOPLES DIRECTORIES
   // ask the AI to generate a loading screen based on 
   // the file content
   console.log(`${relativePath}: Creating loading screen`)
@@ -86,23 +89,7 @@ export async function generateLoadingFile(fullPath: string) {
     messages: [
       { 
         role: "system", 
-        content: "You are a helpful coding assistent that generates fully functional, totally static, self-contained, server-rendered "+
-        "React + Typescript components for use in a Next.js project with the app router. As input, you are passed a `page.tsx` file, which is " +
-        "async and fetches some dynamic content before rendering it. In response, you give the react component for a corresponding `loading.tsx` file " +
-        "that matches the look-and-feel of the dynamic `page.tsx` file. Since these are loading components, they're totally static and server "+ 
-        "rendered -- making no use of useEffect, data fetching, or <style jsx>...</style> or anything like that. " +
-        "Just a nice loading skeleton shimmer. For the shimmer animation, define the keyframes in a template literal and "+
-        "render a <style>...</style> tag. Add the shimmer with inline CSS, relying on the inline `style` prop, and "+
-        "generally including a light shimmer with keyframes, so that your output file is self-contained. "+
-        "Pay special attention to preserving the layout of the page, putting shimmering skeletons in place of text, "+
-        "images, cards, and the like, being mindful not to leave unstyled traces behind with tags like <li>. For layout styling, "+
-        "you can use whatever is most effective as long as it's self-contained, which will usually mean using either Tailwind CSS or "+
-        "the inline style prop. There is no need to include specific text or content that will appear on the eventual page.tsx file. The goal is to "+
-        "reduce visual layout shift or jitter when the eventual contents load -- centering content is generally a safe bet, though you should let "+
-        "the project files dictate the output. Output the contents of `loading.tsx` with no other exposition, since your response will be written "+
-        "directly to `loading.tsx` verbatim. Include comments in the code for rough readability for the developer to get oriented at-a-glance. "+
-        "What follows is `page.tsx` and its corresponding `layout.tsx` file, css files if present, and tailwind config if "+
-        "present, defined in the project:" 
+        content: prompt,
       },
       { 
         role: "user", 
