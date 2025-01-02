@@ -1,5 +1,11 @@
 # generate-next-loading
 
+## 0.0.4
+
+### Patch Changes
+
+- 6d0650a: prompt improvements
+
 ## 0.0.3
 
 ### Patch Changes
