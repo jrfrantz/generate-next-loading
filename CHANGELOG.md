@@ -1,5 +1,12 @@
 # generate-next-loading
 
+## 0.0.6
+
+### Patch Changes
+
+- 65b3a08: option to ignore sync components
+- 11a32cf: fix false boolean
+
 ## 0.0.5
 
 ### Patch Changes
