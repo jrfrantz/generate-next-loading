@@ -14,6 +14,7 @@ program
   .description("Automatically generate a loading screen for a page file")
   .option('-e, --env <path>', 'Path to .env file', '.env')
   .option('-f, --force', 'Force overwrite, even if loading file has been modified', false)
+  .option('-s, --suspense, --sync', 'Make loading files for non-async components, too', false)
   .argument('[file]', 'Path to page.(js|ts|jsx|tsx) file. If not provided, all page files in the current directory will be processed.')
   .action((file, options) => {
     // Add check for file argument
@@ -86,14 +87,13 @@ program
         } else {
           // File has been modified by user - require force flag or user confirmation
           if (!options.force && 
-              !keyInYN(`${relativePath}: File has been modified by user. Overwrite?`, { defaultInput: 'Y'})) {
-            console.log('Operation cancelled')
-            process.exit(0)
+              !keyInYN(`${relativePath}: Corresponding loading file has been modified by user. Overwrite?`, { defaultInput: 'Y'})) {
+            continue;
           }
         }
       }
 
-      generateLoadingFile(fullPath)
+      generateLoadingFile(fullPath, options.suspense)
     }
   })
 

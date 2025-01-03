@@ -8,7 +8,7 @@ import { glob } from "glob";
 import { prompt } from "./prompt";
 
 
-export async function generateLoadingFile(fullPath: string) {
+export async function generateLoadingFile(fullPath: string, includeSyncComponents: boolean) {
   const relativePath = path.relative(process.cwd(), fullPath)
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -67,6 +67,10 @@ export async function generateLoadingFile(fullPath: string) {
       const declaration = path.node.declaration;
       if (declaration.type === "FunctionDeclaration") {
         const isAsync = declaration.async;
+        if (!isAsync && !includeSyncComponents) {
+          // do not generate a loading file for this
+          return
+        }
       }
     },
     ImportDeclaration(nodePath) {
