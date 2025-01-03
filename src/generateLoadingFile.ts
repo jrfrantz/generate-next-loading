@@ -60,7 +60,7 @@ export async function generateLoadingFile(fullPath: string) {
     sourceType: "module",
     plugins: ["typescript", "jsx" ],
   });
-  const localImports: string[] = [];
+  const localImports: {relativePath: string, fileContents: string}[] = [];
   // check if the default export is an async function
   traverse(ast, {
     ExportDefaultDeclaration(path) {
@@ -69,16 +69,35 @@ export async function generateLoadingFile(fullPath: string) {
         const isAsync = declaration.async;
       }
     },
-    ImportDeclaration(path) {
-      const source = path.node.source.value;
-      //console.log({ source })
-      // check if the import is a local import
-      // of a react component
-      localImports.push(source);
+    ImportDeclaration(nodePath) {
+      const source = nodePath.node.source.value;
+      if (source.startsWith("./") || source.startsWith("../")) {
+        const importFilePath = path.resolve(path.dirname(fullPath), source)
+        // it's a local import. try to get its contents
+        const importedFilePath = tryResolve(importFilePath);
+        if (importedFilePath) {
+          const fileContent = fs.readFileSync(importedFilePath, 'utf8')
+          const importAst = parse(fileContent, {
+            sourceType: "module",
+            plugins: ["typescript", "jsx" ],
+          });
+          if (!importAst.errors.length) {
+            // is a valid local import
+            localImports.push({
+              relativePath: source,
+              fileContents: fileContent,
+            });
+          }
+        }
+      }
     },
   });
 
-
+  const localImportsXml = localImports.length ? localImports.map(file => `
+    <${file.relativePath}>
+    ${file.fileContents}
+    </${file.relativePath}>
+  `).join("\n") : ""
   // read prompt.txt into a string variable at build time, noting that 
   // this will be run in OTHER PEOPLES DIRECTORIES
   // ask the AI to generate a loading screen based on 
@@ -101,7 +120,7 @@ export async function generateLoadingFile(fullPath: string) {
         <layout.tsx>
         ${layoutFileContents.join("\n\n")}
         </layout.tsx>
-
+        ${localImportsXml}
         <css>
         ${cssFileContents.join("\n\n")}
         </css>
@@ -132,4 +151,22 @@ export async function generateLoadingFile(fullPath: string) {
   
   fs.writeFileSync(loadingFileLocation, prefix + fileOutput)
   console.log(`${relativePath}: Wrote loading screen to ${relativeLoadingLocation}`)
+}
+
+function tryResolve(basePathNoExt: string): string | null {
+  const possibleExtensions = ['.tsx', '.jsx', '.ts', '.js']
+  for (const ext of possibleExtensions) {
+    const full = basePathNoExt + ext;
+    if (fs.existsSync(full)) {
+      return full
+    }
+    // is it a directory with an index file?
+    if (fs.existsSync(basePathNoExt) && fs.statSync(basePathNoExt).isDirectory()) {
+      const indexFile = path.join(basePathNoExt, `index${ext}`)
+      if (fs.existsSync(indexFile)) {
+        return indexFile
+      }
+    }
+  }
+  return null
 }
