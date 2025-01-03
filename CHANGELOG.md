@@ -1,5 +1,11 @@
 # generate-next-loading
 
+## 0.0.5
+
+### Patch Changes
+
+- 0086576: Support component imports
+
 ## 0.0.4
 
 ### Patch Changes
