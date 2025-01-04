@@ -1,5 +1,5 @@
 # generate-next-loading
-Automatically generate a good-enough `loading.ts` file for your server components.
+Generate nice loading shimmers for ANY (every!) page in your nextjs app using AI with one command.
 
 ![example generated loading shimmer for instagram UI](https://github.com/jrfrantz/generate-next-loading/blob/main/post-shimmer.gif?raw=true)
 
