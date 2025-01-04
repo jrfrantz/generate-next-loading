@@ -1,6 +1,8 @@
 # generate-next-loading
 Automatically generate a good-enough `loading.ts` file for your server components.
 
+![example generated loading shimmer for instagram UI](https://github.com/jrfrantz/generate-next-loading/blob/main/post-shimmer.gif?raw=true)
+
 Loading screens appear instantly to make your site feel faster, give the users the confidence to stick around, and buy developers time to fetch whatever data.
 
 `generate-next-loading` is a CLI tool that automatically generates a `loading.tsx` to go along with each server component's `page.tsx` **that uses intelligence to match the general layout of the page**.
