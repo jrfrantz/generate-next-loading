@@ -24,7 +24,7 @@
     "url": "https://github.com/jrfrantz/generate-next-loading.git"
   },
   "bin": {
-    "generate-next-loading": "dist/index.js"
+    "intelligent-loading-shimmer": "dist/index.js"
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",

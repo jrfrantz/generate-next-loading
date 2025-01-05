@@ -1,13 +1,13 @@
-# generate-next-loading
+# intelligent-loading-shimmer
 Generate nice loading shimmers for ANY (every!) page in your nextjs app using AI with one command.
 
-![example generated loading shimmer for instagram UI](https://github.com/jrfrantz/generate-next-loading/blob/main/post-shimmer.gif?raw=true)
+![example generated loading shimmer for instagram UI](https://github.com/jrfrantz/intelligent-loading-shimmer/blob/main/post-shimmer.gif?raw=true)
 
 Loading screens appear instantly to make your site feel faster, give the users the confidence to stick around, and buy developers time to fetch whatever data.
 
-`generate-next-loading` automatically generates a `loading.tsx` to go along with each server component's `page.tsx` **that uses AI to match the general layout of the page**.
+`intelligent-loading-shimmer` automatically generates a `loading.tsx` to go along with each server component's `page.tsx` **that uses AI to match the general layout of the page**.
 
-`generate-next-loading` makes your site feel faster to users while letting you stay focused on building your actual product:
+`intelligent-loading-shimmer` makes your site feel faster to users while letting you stay focused on building your actual product:
 - Automatically stays up-to-date when you make changes to your pages
 - Mimics the layout of your pages, including locally imported components
 - Components live in your repo, can be customized freely, and work with your version control
@@ -15,7 +15,7 @@ Loading screens appear instantly to make your site feel faster, give the users t
 
 ## How to use
 ```bash
-npx generate-next-loading
+npx intelligent-loading-shimmer
 # ✅ generated loading pages for 3 files
 ```
 or add it to your project:

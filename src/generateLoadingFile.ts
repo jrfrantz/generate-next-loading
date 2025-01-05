@@ -144,7 +144,7 @@ export async function generateLoadingFile(fullPath: string, includeSyncComponent
 
   const prefix = startComment+
 `// This file will stay up-to-date when you make changes to your \`page.tsx\` file
-// and run \`generate-next-loading\` again.
+// and run \`intelligent-loading-shimmer\` again.
 // You can edit this file. To prevent future overwrites, delete the comment line.
 `
 
