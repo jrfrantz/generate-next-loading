@@ -1,5 +1,11 @@
 # generate-next-loading
 
+## 0.0.8
+
+### Patch Changes
+
+- b48bdc4: homepage links
+
 ## 0.0.7
 
 ### Patch Changes
