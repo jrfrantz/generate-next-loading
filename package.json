@@ -16,12 +16,15 @@
     "next",
     "loading",
     "codegen",
+    "ai",
+    "intelligence",
+    "shimmer",
     "cli"
   ],
-  "homepage": "https://github.com/jrfrantz/generate-next-loading#readme",
+  "homepage": "https://github.com/jrfrantz/intelligent-loading-shimmer#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jrfrantz/generate-next-loading.git"
+    "url": "https://github.com/jrfrantz/intelligent-loading-shimmer.git"
   },
   "bin": {
     "intelligent-loading-shimmer": "dist/index.js"
