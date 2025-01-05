@@ -1,5 +1,11 @@
 # generate-next-loading
 
+## 0.0.7
+
+### Patch Changes
+
+- ab79f40: rename to intelligent-loading-shimmer
+
 ## 0.0.6
 
 ### Patch Changes
