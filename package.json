@@ -1,5 +1,5 @@
 {
-  "name": "generate-next-loading",
+  "name": "intelligent-loading-shimmer",
   "license": "MIT",
   "version": "0.0.6",
   "main": "dist/index.js",

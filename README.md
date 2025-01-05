@@ -20,17 +20,24 @@ npx generate-next-loading
 ```
 or add it to your project:
 ```bash
-npm i --save-dev generate-next-loading
+npm i --save-dev intelligent-loading-shimmer
 ```
 In package.json:
 ```js
 //package.json
 {
   "scripts": {
-    "generate-loading": "generate-next-loading"
+    // add it to your prebuild to automatically keep up with changes
+    "prebuild": "intelligent-loading-shimmer",
+    // or just make a custom command for it that matches your preferences
+    "generate-loading": "intelligent-loading-shimmer",
   },
 }
 ```
 That's it! You need an env variable for `OPENAI_API_KEY`. By defualt, looks in `.env` in your project.
+
+Command-line options:
+- `-e, --env <path>`: Path to an env file with an `OPENAI_API_KEY=your_key` defined
+- `-f, --force`: Force an overwrite of existing loading files
 
 To learn more about next.js's `loading` convention, see [nextjs documentation](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming)
