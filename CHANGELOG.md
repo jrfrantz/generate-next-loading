@@ -1,5 +1,11 @@
 # generate-next-loading
 
+## 0.0.9
+
+### Patch Changes
+
+- 94c3916: Update readme
+
 ## 0.0.8
 
 ### Patch Changes
