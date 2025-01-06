@@ -41,3 +41,5 @@ Command-line options:
 - `-f, --force`: Force an overwrite of existing loading files
 
 To learn more about next.js's `loading` convention, see [nextjs documentation](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming)
+
+Thanks to shadcn/ui for the Skeleton component that forms the visual basis of these shimmers
